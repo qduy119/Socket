@@ -53,6 +53,7 @@ def handleClient(connection, address):
                     print("Error sending response: %s"%(err))
                     sys.exit(1)
             print("--------------------\n[SERVER]\nRequest %s with path %s DONE\n"%(request.method,request.path))
+            
     connection.close()
 
 if(__name__ == "__main__"):
@@ -62,7 +63,7 @@ if(__name__ == "__main__"):
         except socket.error as err:
             print("Error accepting connection: %s"%(err))
             sys.exit(1)
-
+        # Thread
         thread = threading.Thread(target=handleClient, args=(connection, address))
         thread.start()        
 
